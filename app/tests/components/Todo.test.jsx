@@ -11,7 +11,7 @@ describe('Todo', () => {
     expect(Todo).toExist();
   });
 
-  it('should call onToggle prop widh id on click', () => {
+  it('should call onToggle prop with id on click', () => {
     let todoData = {
       id: 199,
       text: 'write todo',

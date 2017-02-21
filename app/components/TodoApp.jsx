@@ -1,8 +1,10 @@
 import React from 'react';
-import TodoList from 'TodoList';
-import AddTodo from 'AddTodo';
-import TodoSearch from 'TodoSearch';
 import uuid from 'node-uuid';
+
+import AddTodo from 'AddTodo';
+import TodoAPI from 'TodoAPI';
+import TodoList from 'TodoList';
+import TodoSearch from 'TodoSearch';
 
 export default class TodoApp extends React.Component {
   constructor (props) {
@@ -10,28 +12,7 @@ export default class TodoApp extends React.Component {
     this.state = {
       showCompleted: false,
       searchText: '',
-      todos: [
-        {
-          id: uuid(),
-          text: 'Walk the dog',
-          completed: false
-        },
-        {
-          id: uuid(),
-          text: 'Eat some food',
-          completed: true
-        },
-        {
-          id: uuid(),
-          text: 'Another one',
-          completed: true
-        },
-        {
-          id: uuid(),
-          text: 'Clean house',
-          completed: false
-        }
-      ]
+      todos: TodoAPI.getTodos()
     };
   }
 
@@ -47,6 +28,11 @@ export default class TodoApp extends React.Component {
       ]
     })
   }
+
+  componentDidUpdate () {
+    TodoAPI.setTodos(this.state.todos);
+  }
+
   handleToggle = (id) => {
     let updatedTodos = this.state.todos.map((todo) => {
       if (todo.id === id) {
