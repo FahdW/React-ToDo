@@ -19,7 +19,7 @@ export default class AddTodo extends React.Component {
       <div>
         <form ref="form" onSubmit={this.onSubmit}>
           <input ref="todoText" type="text" />
-          <button className="button">Add Todo</button>
+          <button className="button expanded">Add Todo</button>
         </form>
     </div>
     );
