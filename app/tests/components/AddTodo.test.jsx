@@ -5,6 +5,7 @@ import $ from 'jquery';
 import TestUtils from 'react-addons-test-utils';
 
 import {AddTodo} from 'AddTodo';
+import * as actions from 'actions';
 
 describe('AddTodo', () => {
   it('should exist', () => {
@@ -25,10 +26,7 @@ describe('AddTodo', () => {
 
   it('should dispatch ADD_TODO when valid todo text', () => {
     let todoText = 'New Todo';
-    let action = {
-      type: 'ADD_TODO',
-      text: todoText
-    }
+    let action = actions.startAddTodo(todoText);
     let spy = expect.createSpy();
     let addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy} />);
     let $el = $(ReactDOM.findDOMNode(addTodo));
