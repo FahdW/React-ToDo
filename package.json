@@ -1,7 +1,7 @@
 {
-  "name": "ReactBoilerplate",
+  "name": "TodoApp",
   "version": "1.0.0",
-  "description": "React Boilerplate",
+  "description": "React Todo App",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test karma start",
@@ -9,7 +9,7 @@
     "start": "npm run build && node server.js"
   },
   "author": "Fahd",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "axios": "0.15.3",
     "express": "^4.14.0",
