@@ -7,17 +7,33 @@ export var setSearchText = (searchText) => {
   };
 };
 
-export var addTodo = (todo) => {
-  return {
-    type: 'ADD_TODO',
-    todo
-  };
-};
-
 export var addTodos = (todos) => {
   return {
     type: 'ADD_TODOS',
     todos
+  };
+};
+
+export var startAddTodos = () => {
+  return (dispatch, getState) => {
+    let todos = [];
+    return firebaseRef.child('todos').once('value').then((snapshot) => {
+      let tempTodos = snapshot.val() || {};
+      Object.keys(tempTodos).forEach((id) => {
+        todos.push({
+          id,
+          ...tempTodos[id]
+        });
+      });
+      dispatch(addTodos(todos));
+    });
+  };
+};
+
+export var addTodo = (todo) => {
+  return {
+    type: 'ADD_TODO',
+    todo
   };
 };
 
