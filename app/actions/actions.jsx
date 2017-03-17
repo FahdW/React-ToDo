@@ -1,5 +1,7 @@
-import firebase, {firebaseRef} from 'app/firebase/'
 import moment from 'moment';
+
+import firebase, {firebaseRef} from 'app/firebase/';
+
 export var setSearchText = (searchText) => {
   return {
     type: 'SET_SEARCH_TEXT',
@@ -7,26 +9,9 @@ export var setSearchText = (searchText) => {
   };
 };
 
-export var addTodos = (todos) => {
+export var toggleShowCompleted = () => {
   return {
-    type: 'ADD_TODOS',
-    todos
-  };
-};
-
-export var startAddTodos = () => {
-  return (dispatch, getState) => {
-    let todos = [];
-    return firebaseRef.child('todos').once('value').then((snapshot) => {
-      let tempTodos = snapshot.val() || {};
-      Object.keys(tempTodos).forEach((id) => {
-        todos.push({
-          id,
-          ...tempTodos[id]
-        });
-      });
-      dispatch(addTodos(todos));
-    });
+    type: 'TOGGLE_SHOW_COMPLETED'
   };
 };
 
@@ -56,9 +41,30 @@ export var startAddTodo = (text) => {
   };
 };
 
-export var toggleShowCompleted = () => {
+export var addTodos = (todos) => {
   return {
-    type: 'TOGGLE_SHOW_COMPLETED'
+    type: 'ADD_TODOS',
+    todos
+  };
+};
+
+export var startAddTodos = () => {
+  return (dispatch, getState) => {
+    var todosRef = firebaseRef.child('todos');
+
+    return todosRef.once('value').then((snapshot) => {
+      var todos = snapshot.val() || {};
+      var parsedTodos = [];
+
+      Object.keys(todos).forEach((todoId) => {
+        parsedTodos.push({
+          id: todoId,
+          ...todos[todoId]
+        });
+      });
+
+      dispatch(addTodos(parsedTodos));
+    });
   };
 };
 
