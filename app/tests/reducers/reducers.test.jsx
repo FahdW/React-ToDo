@@ -86,6 +86,22 @@ describe('Reducers', () => {
       expect(res[0]).toEqual(todos[0]);
     });
 
+    it('should remove todos on LOGOUT', () => {
+      let todos = [{
+        id: '11',
+        text: 'something',
+        completed: false,
+        completedAt: undefined,
+        createdAt: 33999
+      }];
+      let action = {
+        type: 'LOGOUT'
+      };
+      let res = reducers.todosReducer(df(todos), df(action));
+
+      expect(res.length).toEqual(0);
+    });
+
     describe('authReducer', () => {
       it('should login and set uid', () => {
         let action = {
