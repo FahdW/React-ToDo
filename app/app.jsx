@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {hashHistory} from 'react-router';
 
 import firebase from 'app/firebase';
-var actions = require('actions');
+import * as actions from 'actions';
 var store = require('configureStore').configure();
 import router from 'app/router';
 

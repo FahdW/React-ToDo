@@ -1,11 +1,11 @@
 import React from 'react';
-var {connect} = require('react-redux');
-var actions = require('actions');
+import {connect} from 'react-redux';
+import * as actions from 'actions';
 
 export class AddTodo extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
-    var {dispatch} = this.props;
+    let {dispatch} = this.props;
     let todoText = this.refs.todoText.value;
 
     if (todoText.length > 0) {

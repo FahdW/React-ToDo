@@ -6,7 +6,7 @@ import * as actions from 'actions';
 
 export class Login extends React.Component {
   onLogin = () => {
-    var {dispatch} = this.props;
+    let {dispatch} = this.props;
 
     dispatch(actions.startLogin());
   }

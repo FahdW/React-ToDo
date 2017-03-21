@@ -7,15 +7,15 @@ import {
   todosReducer
 } from 'reducers';
 
-export var configure = (initialState = {}) => {
-  var reducer = redux.combineReducers({
+export const configure = (initialState = {}) => {
+  const reducer = redux.combineReducers({
     auth: authReducer,
     searchText: searchTextReducer,
     showCompleted: showCompletedReducer,
     todos: todosReducer
   });
 
-  var store = redux.createStore(reducer, initialState, redux.compose(
+  const store = redux.createStore(reducer, initialState, redux.compose(
     redux.applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ));

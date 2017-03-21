@@ -1,6 +1,6 @@
 import React from 'react';
-var {connect} = require('react-redux');
-var actions = require('actions');
+import {connect} from 'react-redux';
+import * as actions from 'actions';
 
 export class TodoSearch extends React.Component {
   render () {
